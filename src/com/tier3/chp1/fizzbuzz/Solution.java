@@ -1,4 +1,4 @@
-package com.tier3.fizzbuzz;
+package com.tier3.chp1.fizzbuzz;
 
 import java.util.ArrayList;
 

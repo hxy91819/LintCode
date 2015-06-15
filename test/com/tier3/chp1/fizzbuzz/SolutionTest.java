@@ -1,4 +1,6 @@
-package com.tier3.fizzbuzz;
+package com.tier3.chp1.fizzbuzz;
+
+import com.tier3.chp1.fizzbuzz.Solution;
 
 import junit.framework.TestCase;
 
