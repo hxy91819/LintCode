@@ -10,7 +10,7 @@ public class Solution {
 	 * 
 	 * 替换空格之后的结果为"Mr%20John%20Smith"
 	 * 
-	 * 因为Java不能操作引用，故此函数无法在LintCode上实现
+	 * 因为Java不能操作引用，故此函数无法在LintCode上通过
 	 * 
 	 * @param string
 	 *            : An array of Char
@@ -43,6 +43,8 @@ public class Solution {
 	}
 
 	/**
+	 * 计算在一个 32 位的整数的二进制表式中有多少个 1.
+	 * 
 	 * @param num
 	 *            : an integer
 	 * @return: an integer, the number of ones in num
@@ -60,6 +62,106 @@ public class Solution {
 		return sum;
 	}
 
+	/**
+	 * 查找斐波纳契数列中第 N 个数。
+	 * 
+	 * 所谓的斐波纳契数列是指：
+	 * 
+	 * 前2个数是 0 和 1 。 第 i 个数是第 i-1 个数和第i-2 个数的和。 斐波纳契数列的前10个数字是：
+	 * 
+	 * 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+	 * 
+	 * 使用递归的方法，在计算大序号时效率极低，使用递推，计算速度很快。
+	 * 
+	 * @param n
+	 *            : an integer
+	 * @return an integer f(n)
+	 */
+	public int fibonacci(int n) {
+		if (n == 1) {
+			return 0;
+		} else if (n == 2) {
+			return 1;
+		}
+		int n1 = 0, n2 = 1, sn = 0;
+		for (int i = 0; i < n - 2; i++) {
+			sn = n1 + n2;
+			n1 = n2;
+			n2 = sn;
+		}
+		return sn;
+	}
+
+	private static Solution solution;
+
+	/**
+	 * 单例 是最为最常见的设计模式之一。对于任何时刻，如果某个类只存在且最多存在一个具体的实例，那么我们称这种设计模式为单例。例如，对于 class
+	 * Mouse (不是动物的mouse哦)，我们应将其设计为 singleton 模式。
+	 * 
+	 * 你的任务是设计一个 getInstance 方法，对于给定的类，每次调用 getInstance 时，都可得到同一个实例。
+	 * 
+	 * @return: The same instance of this class every time
+	 */
+	public static Solution getInstance() {
+		return solution;
+	}
+
+	/**
+	 * 翻转一个链表
+	 * 
+	 * @param head
+	 *            : The head of linked list.
+	 * @return: The new head of reversed linked list.
+	 */
+	public ListNode reverse(ListNode head) {
+		if(head == null){
+			return null;
+		}
+		
+		ListNode tmpNode = head;// 当前操作节点
+
+		ArrayList<ListNode> arrayListNode = new ArrayList<ListNode>();
+
+		//将链表内容存储到arrayListNode
+		while (true) {
+			if (tmpNode == null) {
+				break;
+			}
+			
+			arrayListNode.add(new ListNode(tmpNode.val));
+
+			tmpNode = tmpNode.next;
+		}
+		
+		int size = arrayListNode.size();
+
+		// 再次循环设置next
+		for (int i = size - 1; i >= 0; i--) {
+			if (i >= 1) {
+				arrayListNode.get(i).next = arrayListNode.get(i - 1);
+			} else {
+				arrayListNode.get(i).next = null;
+			}
+		}
+
+		return arrayListNode.get(size - 1);
+	}
 	/* ---------------------------------------------------------------------- */
 
+}
+
+/**
+ * Definition for ListNode.
+ * 
+ * @author hxy
+ *
+ */
+class ListNode {
+	int val;
+	ListNode next;
+
+	ListNode(int val) {
+		this.val = val;
+		this.next = null;
+	}
 }
