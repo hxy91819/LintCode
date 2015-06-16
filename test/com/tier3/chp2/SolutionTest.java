@@ -49,5 +49,30 @@ public class SolutionTest extends TestCase {
 		Assert.assertEquals(2, ret.next.val);
 		Assert.assertEquals(1, ret.next.next.val);
 	}
+	
+	public void testfindMin(){
+		int[] num = {4,5,6,7,0,1,2};
+		
+		Assert.assertEquals(0, sol.findMin(num));
+	}
+	
+	public void testgetTreePreOrder(){
+		TreeNode tree1 = new TreeNode(1);
+		TreeNode tree2 = new TreeNode(2);
+		TreeNode tree3 = new TreeNode(3);
+		TreeNode tree4 = new TreeNode(4);
+		TreeNode tree5 = new TreeNode(5);
+		TreeNode tree6 = new TreeNode(6);
+		
+		tree1.left = tree2;
+		tree1.right = tree3;
+		
+		tree2.left = tree4;
+		tree2.right = tree5;
+		
+		tree3.left = tree6;
+		
+		sol.getTreePreOrder(tree1);
+	}
 }
 

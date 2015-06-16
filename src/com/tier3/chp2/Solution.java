@@ -2,6 +2,8 @@ package com.tier3.chp2;
 
 import java.util.ArrayList;
 
+import com.sun.management.OperatingSystemMXBean;
+
 public class Solution {
 	/**
 	 * 设计一种方法，将一个字符串中的所有空格替换成 %20 。你可以假设该字符串有足够的空间来加入新的字符，且你得到的是“真实的”字符长度。
@@ -114,25 +116,25 @@ public class Solution {
 	 * @return: The new head of reversed linked list.
 	 */
 	public ListNode reverse(ListNode head) {
-		if(head == null){
+		if (head == null) {
 			return null;
 		}
-		
+
 		ListNode tmpNode = head;// 当前操作节点
 
 		ArrayList<ListNode> arrayListNode = new ArrayList<ListNode>();
 
-		//将链表内容存储到arrayListNode
+		// 将链表内容存储到arrayListNode
 		while (true) {
 			if (tmpNode == null) {
 				break;
 			}
-			
+
 			arrayListNode.add(new ListNode(tmpNode.val));
 
 			tmpNode = tmpNode.next;
 		}
-		
+
 		int size = arrayListNode.size();
 
 		// 再次循环设置next
@@ -145,6 +147,92 @@ public class Solution {
 		}
 
 		return arrayListNode.get(size - 1);
+	}
+
+	/**
+	 * 假设一个旋转排序的数组其起始位置是未知的（比如0 1 2 4 5 6 7 可能变成是4 5 6 7 0 1 2）。
+	 * 
+	 * 你需要找到其中最小的元素。
+	 * 
+	 * 你可以假设数组中不存在重复的元素。
+	 * 
+	 * @param num
+	 *            : a rotated sorted array
+	 * @return: the minimum number in the array
+	 */
+	public int findMin(int[] num) {
+		int min = num[0];
+		for (int i = 1; i < num.length; i++) {
+			if (num[i] < min) {
+				min = num[i];
+			}
+		}
+		return min;
+	}
+
+	/**
+	 * 根据前序遍历和中序遍历树构造二叉树.
+	 *
+	 * @param preorder
+	 *            : A list of integers that preorder traversal of a tree
+	 * @param inorder
+	 *            : A list of integers that inorder traversal of a tree
+	 * @return : Root of a tree
+	 */
+	public TreeNode buildTree(int[] preorder, int[] inorder) {
+		return new TreeNode(1);
+	}
+
+	/**
+	 * 求树的前序遍历
+	 * 
+	 * @param treeNode
+	 */
+	public void getTreePreOrder(TreeNode treeNode) {
+		System.out.println(treeNode.val);
+
+		TreeNode leftTreeNode = treeNode.left;
+
+		if (leftTreeNode != null) {
+			getTreePreOrder(leftTreeNode);
+		}
+
+		TreeNode rightTreeNode = treeNode.right;
+
+		if (rightTreeNode != null) {
+			getTreePreOrder(rightTreeNode);
+		}
+	}
+
+	/**
+	 * Invert a binary tree.
+	 * 
+	 * @param root
+	 *            : a TreeNode, the root of the binary tree
+	 * @return: nothing
+	 */
+	public void invertBinaryTree(TreeNode root) {
+		TreeNode tempTreeNode = new TreeNode(1);
+
+		if (root.left != null) {
+			tempTreeNode = root.left;
+			if (root.right != null) {
+				root.left = root.right;
+				root.right = tempTreeNode;
+			} else {
+				root.right = tempTreeNode;
+				root.left = null;
+			}
+		} else {
+			if (root.right != null) {
+				root.left = root.right;
+				root.right = null;
+			} else {
+				return;
+			}
+		}
+		invertBinaryTree(root.left);
+		invertBinaryTree(root.right);
 	}
 	/* ---------------------------------------------------------------------- */
 
@@ -163,5 +251,18 @@ class ListNode {
 	ListNode(int val) {
 		this.val = val;
 		this.next = null;
+	}
+}
+
+/**
+ * Definition of TreeNode:
+ */
+class TreeNode {
+	public int val;
+	public TreeNode left, right;
+
+	public TreeNode(int val) {
+		this.val = val;
+		this.left = this.right = null;
 	}
 }
