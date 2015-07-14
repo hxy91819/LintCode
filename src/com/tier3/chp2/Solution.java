@@ -2,6 +2,9 @@ package com.tier3.chp2;
 
 import java.util.ArrayList;
 
+import com.determine.classes.ListNode;
+import com.determine.classes.TreeNode;
+
 public class Solution {
 	/**
 	 * 设计一种方法，将一个字符串中的所有空格替换成 %20 。你可以假设该字符串有足够的空间来加入新的字符，且你得到的是“真实的”字符长度。
@@ -223,34 +226,5 @@ public class Solution {
 			System.out.print(n.val + ",");
 			inOrder(n.right);
 		}
-	}
-}
-
-/**
- * Definition for ListNode.
- * 
- * @author hxy
- *
- */
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int val) {
-		this.val = val;
-		this.next = null;
-	}
-}
-
-/**
- * Definition of TreeNode:
- */
-class TreeNode {
-	public int val;
-	public TreeNode left, right;
-
-	public TreeNode(int val) {
-		this.val = val;
-		this.left = this.right = null;
 	}
 }

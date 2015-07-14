@@ -3,6 +3,7 @@ package com.tier3.chp2;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
+import com.determine.classes.ListNode;
 import com.tier3.chp2.Solution;
 
 @SuppressWarnings("deprecation")
